@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CareInbox.ca — Secure Clinical Document Delivery</title>
+    <meta name="description" content="Secure clinical document ingestion for Canadian healthcare clinics. Receive faxes, referral letters, and clinical documents electronically via your dedicated @careinbox.ca address.">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d7377'/%3E%3Cpath d='M6 11l10 7 10-7' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='6' y='10' width='20' height='14' rx='2' fill='none' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: #1a1a1a;
+            background: #f8fafb;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 1.75rem 2.5rem;
+            border-bottom: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+
+        .header-inner {
+            max-width: 780px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .wordmark {
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #0d7377;
+        }
+
+        .wordmark span {
+            color: #1e293b;
+        }
+
+        .badge {
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #0d7377;
+            background: #e6f7f7;
+            padding: 0.3rem 0.7rem;
+            border-radius: 100px;
+        }
+
+        .hero {
+            background: linear-gradient(180deg, #ffffff 0%, #f0f7f7 100%);
+            padding: 4.5rem 2.5rem 4rem;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .hero-inner {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            line-height: 1.25;
+            color: #0f172a;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            color: #475569;
+            line-height: 1.7;
+        }
+
+        .content {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 3.5rem 2.5rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1.75rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+
+        .card-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: #0d7377;
+            margin-bottom: 0.6rem;
+        }
+
+        .card p {
+            font-size: 0.925rem;
+            color: #475569;
+            margin: 0;
+            line-height: 1.65;
+        }
+
+        .card.full {
+            grid-column: 1 / -1;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #0d7377;
+            margin-bottom: 1.25rem;
+        }
+
+        .steps-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+
+        .steps {
+            list-style: none;
+            padding: 0;
+            counter-reset: step;
+        }
+
+        .steps li {
+            font-size: 0.95rem;
+            color: #374151;
+            padding: 0.75rem 0;
+            padding-left: 2.25rem;
+            position: relative;
+            border-bottom: 1px solid #f1f5f9;
+            counter-increment: step;
+        }
+
+        .steps li:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .steps li:first-child {
+            padding-top: 0;
+        }
+
+        .steps li::before {
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0.7rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: #e6f7f7;
+            color: #0d7377;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .steps li:first-child::before {
+            top: 0;
+        }
+
+        .compliance {
+            margin-top: 3rem;
+            text-align: center;
+            padding: 1.5rem;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+
+        .compliance p {
+            font-size: 0.9rem;
+            color: #475569;
+            margin: 0;
+        }
+
+        .compliance strong {
+            color: #0d7377;
+        }
+
+        footer {
+            border-top: 1px solid #e2e8f0;
+            background: #ffffff;
+            padding: 2.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #64748b;
+            line-height: 1.9;
+        }
+
+        footer a {
+            color: #0d7377;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        footer .operator {
+            font-weight: 500;
+            color: #475569;
+        }
+
+        @media (max-width: 640px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 3rem 1.5rem 2.5rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .content {
+                padding: 2.5rem 1.5rem;
+            }
+
+            header {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            .badge {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <div class="wordmark">Care<span>Inbox</span>.ca</div>
+        <div class="badge">Hosted in Canada</div>
+    </div>
+</header>
+
+<div class="hero">
+    <div class="hero-inner">
+        <h1>Secure clinical document delivery for Canadian healthcare</h1>
+        <p class="hero-sub">
+            A dedicated @careinbox.ca address for receiving faxes, referral letters,
+            and clinical documents electronically. No hardware, no paper, no fax machines.
+        </p>
+    </div>
+</div>
+
+<div class="content">
+    <div class="card-grid">
+        <div class="card">
+            <div class="card-label">Infrastructure</div>
+            <p>
+                All data hosted in Canada on GCP infrastructure in Montr&eacute;al
+                (northamerica-northeast1). TLS encryption enforced on all inbound
+                connections. Documents never leave Canadian jurisdiction.
+            </p>
+        </div>
+
+        <div class="card">
+            <div class="card-label">Security</div>
+            <p>
+                Documents are ingested into the clinic's EMR system and purged from
+                the inbox after processing. The mailbox is a secure transit layer,
+                not a document store&mdash;nothing persists beyond delivery.
+            </p>
+        </div>
+    </div>
+
+    <div class="section-label">For clinics</div>
+    <div class="steps-card">
+        <ol class="steps">
+            <li>Each clinic receives a provisioned @careinbox.ca address</li>
+            <li>Configure your fax service (SRFax, Telus Business Connect, etc.) to forward to your CareInbox address</li>
+            <li>Documents route directly into your EMR workflow</li>
+        </ol>
+    </div>
+
+    <div class="compliance">
+        <p>Designed from the ground up for <strong>PIPEDA</strong> and <strong>PHIPA</strong> compliance.</p>
+    </div>
+</div>
+
+<footer>
+    <span class="operator">CareInbox is operated by Translational AI</span><br>
+    Contact: <a href="mailto:admin@translational.ca">admin@translational.ca</a><br>
+    Toronto, Ontario, Canada
+</footer>
+
+</body>
+</html>
