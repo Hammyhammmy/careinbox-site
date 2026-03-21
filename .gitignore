@@ -3,3 +3,10 @@ claude_code_tips.md
 plan.md
 plan2.md
 plan3.md
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
